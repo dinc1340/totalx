@@ -1,12 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:totalx/provider/otpprovider.dart';
-import 'package:totalx/screens/otp.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,15 +16,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController phonecontroller = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
-   var totalx = Provider.of<OtpProvider>(context, listen: false);
+    var otpProvider = Provider.of<OtpProvider>(context, listen: false);
     return PopScope(
       canPop: false,
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 93.h),
+          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 92.h),
           child: Consumer(builder: (context, a, child) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +40,10 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   "Enter Phone Number",
                   style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600),
+                    fontFamily: "Montserrat",
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Gap(16.h),
                 SizedBox(
@@ -52,14 +52,17 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.phone,
                     controller: phonecontroller,
                     decoration: InputDecoration(
-                        hintText: "Enter Phone Number * ",
-                        hintStyle: TextStyle(
-                            fontFamily: "Montserrat",
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                            borderSide: BorderSide(width: 1.sp))),
+                      hintText: "Enter Phone Number * ",
+                      hintStyle: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                        borderSide: BorderSide(width: 1.sp),
+                      ),
+                    ),
                   ),
                 ),
                 Gap(16.h),
@@ -75,29 +78,32 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       TextSpan(
                         recognizer: TapGestureRecognizer()..onTap = () {},
-                        text: " Terms and condition",
+                        text: " Terms and Condition",
                         style: TextStyle(
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Montserrat",
-                            color: Color(0xff2873F0).withOpacity(.5)),
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Montserrat",
+                          color: const Color(0xff2873F0).withOpacity(.5),
+                        ),
                       ),
                       TextSpan(
                         text: "  & ",
                         style: TextStyle(
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Montserrat"),
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Montserrat",
+                        ),
                       ),
                       TextSpan(
                         recognizer: TapGestureRecognizer()..onTap = () {},
-                        text: " privacy policy",
+                        text: " Privacy Policy",
                         style: TextStyle(
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Montserrat",
-                            color: Color(0xff2873F0).withOpacity(.5)),
-                      )
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Montserrat",
+                          color: const Color(0xff2873F0).withOpacity(.5),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -105,12 +111,18 @@ class _LoginPageState extends State<LoginPage> {
                 bottom_button(
                   title: "Get OTP",
                   click: () {
-                    totalx.sendOtp("+91${phonecontroller.text}", context);
-                    Navigator.push(
+                    if (phonecontroller.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Enter Mobile Number'),
+                        ),
+                      );
+                    } else {
+                      otpProvider.sendOtp(
+                        "+91${phonecontroller.text}",
                         context,
-                        MaterialPageRoute(
-                          builder: (context) =>  OtpPage(phone: phonecontroller.text,),
-                        ));
+                      );
+                    }
                   },
                 )
               ],
@@ -121,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
 class bottom_button extends StatelessWidget {
   const bottom_button({super.key, required this.title, this.click});
   final String title;
