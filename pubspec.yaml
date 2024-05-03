@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   gap: ^3.0.1
   provider: ^6.1.2
+  pinput: ^4.0.0
 
 dev_dependencies:
   flutter_test:
