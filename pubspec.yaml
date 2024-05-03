@@ -39,6 +39,9 @@ dependencies:
   gap: ^3.0.1
   provider: ^6.1.2
   pinput: ^4.0.0
+  firebase_auth: ^4.19.4
+  firebase_core: ^2.30.1
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
