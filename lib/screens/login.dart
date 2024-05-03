@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:totalx/provider/otpprovider.dart';
+import 'package:totalx/widgets/bottom_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -130,30 +131,6 @@ class _LoginPageState extends State<LoginPage> {
           }),
         ),
       ),
-    );
-  }
-}
-class bottom_button extends StatelessWidget {
-  const bottom_button({super.key, required this.title, this.click});
-  final String title;
-  final void Function()? click;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 44.h,
-      width: MediaQuery.of(context).size.width,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-          onPressed: click,
-          child: Text(
-            title,
-            style: TextStyle(
-                fontFamily: "Montserrat",
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white),
-          )),
     );
   }
 }
