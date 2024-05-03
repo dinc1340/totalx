@@ -4,13 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:totalx/provider/otpprovider.dart';
 import 'package:totalx/screens/homepage.dart';
 import 'package:totalx/screens/login.dart';
 
-class OtpPage extends StatefulWidget {
-  const OtpPage({super.key,});
 
+
+class OtpPage extends StatefulWidget {
+  const OtpPage({super.key, required this.phone});
+  final String phone;
   @override
   State<OtpPage> createState() => _OtpPageState();
 }
@@ -19,7 +22,7 @@ class _OtpPageState extends State<OtpPage> {
   TextEditingController otpcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-  
+    var totalx = Provider.of<OtpProvider>(context, listen: false);
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 74.h),
@@ -47,7 +50,7 @@ class _OtpPageState extends State<OtpPage> {
                 opacity: .7,
                 child: Text(
                   textAlign: TextAlign.left,
-                  "Enter the verification code we just sent to your number +91........21",
+                  "Enter the verification code we just sent to your number +91${widget.phone}",
                   style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 14.sp,
@@ -121,12 +124,13 @@ class _OtpPageState extends State<OtpPage> {
               Gap(17.h),
               bottom_button(
                 title: 'Verify',
-                click: ()  {
-                 
+                click: () async {
+                 totalx.verifyOtp(context, otpcontroller.text);
+                  
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => const HomePage(),
                       ));
                 },
               )
