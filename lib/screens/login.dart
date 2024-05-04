@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:totalx/provider/otpprovider.dart';
 import 'package:totalx/widgets/bottom_button.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 

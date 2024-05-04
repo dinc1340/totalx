@@ -7,8 +7,8 @@ import 'package:gap/gap.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:totalx/provider/otpprovider.dart';
-import 'package:totalx/screens/login.dart';
 import 'package:totalx/widgets/bottom_button.dart';
+
 
 class OtpPage extends StatefulWidget {
   const OtpPage({super.key, required this.phone});

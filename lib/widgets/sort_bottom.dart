@@ -23,12 +23,12 @@ class _SortSheetState extends State<SortSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 16.w, top: 16.h),
-          child: Text(
+    return Padding(
+      padding: EdgeInsets.only(left: 16.w, top: 16.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
             "Sort",
             style: TextStyle(
               fontFamily: "Montserrat",
@@ -36,17 +36,25 @@ class _SortSheetState extends State<SortSheet> {
               fontWeight: FontWeight.w600,
             ),
           ),
-        ),
-        Gap(20.h),
-        RadioGroup(
-          controller: controller,
-          onChanged: (value) {
-            widget.provider.setSort(values.indexOf(value));
-            Navigator.pop(context);
-          },
-          values: values,
-        ),
-      ],
+          Gap(20.h),
+          RadioGroup(
+            
+            controller: controller,
+            decoration: RadioGroupDecoration(
+              spacing: 15.h,
+              labelStyle: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500),
+            ),
+            onChanged: (value) {
+              widget.provider.setSort(values.indexOf(value));
+              Navigator.pop(context);
+            },
+            values: values,
+          ),
+        ],
+      ),
     );
   }
 }

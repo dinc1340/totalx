@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:totalx/model/userdetails.dart';
 import 'package:totalx/provider/user_provider.dart';
 
-
 class AddUserPopup extends StatefulWidget {
   const AddUserPopup({
     super.key,
@@ -47,7 +46,7 @@ class _AddUserPopupState extends State<AddUserPopup> {
       content: Form(
         key: _formKey,
         child: SizedBox(
-          height: 370.h,
+          height: 270.h,
           width: 340.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +55,7 @@ class _AddUserPopupState extends State<AddUserPopup> {
                 child: GestureDetector(
                   onTap: () async {
                     final ImagePicker picker = ImagePicker();
-                    image = await picker.pickImage(source: ImageSource.camera);
+                    image = await picker.pickImage(source: ImageSource.gallery);
                   },
                   child: Container(
                     height: 80.h,
@@ -102,20 +101,24 @@ class _AddUserPopupState extends State<AddUserPopup> {
                 ),
               ),
               Gap(12.h),
-              TextFormField(
-                controller: widget.names,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Name is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black.withOpacity(.3),
+              SizedBox(
+                height: 44.h,
+                width: 323.w,
+                child: TextFormField(
+                  controller: widget.names,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Name is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black.withOpacity(.3),
+                      ),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
-                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
               ),
@@ -132,20 +135,24 @@ class _AddUserPopupState extends State<AddUserPopup> {
                 ),
               ),
               Gap(12.h),
-              TextFormField(
-                controller: widget.ages,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Age is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black.withOpacity(.3),
+              SizedBox(
+                height: 44.h,
+                width: 323.w,
+                child: TextFormField(
+                  controller: widget.ages,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Age is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black.withOpacity(.3),
+                      ),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
-                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
               ),
